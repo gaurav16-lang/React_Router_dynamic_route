@@ -5,10 +5,9 @@ import styled from 'styled-components'
 const Wraper = styled.div`
   width: 50%;
 
-  border: 1px solid red;
   display: grid;
-  grid-template-columns: repeat(4, 20%);
-  grid-gap: 1%;
+  grid-template-columns: repeat(4, 23%);
+  grid-gap: 2%;
   margin: auto;
   margin-top: 50px;
 `
@@ -18,7 +17,6 @@ const Image = styled.img`
 `
 const Belowraper = styled.div`
   width: 100%;
-  border: 1px solid black;
 `
 export const Users = () => {
   const [users, setusers] = React.useState([])
@@ -30,12 +28,9 @@ export const Users = () => {
 
   const fetchUser = () => {
     setisLoading(true)
-    fetch(`https://reqres.in/api/users`)
-      .then((d) => d.json())
-      .then((res) => {
-        setusers(res.data)
-        console.log(res.data)
-      })
+    fetch(`https://fakestoreapi.com/products`)
+      .then((res) => res.json())
+      .then((json) => setusers(json))
   }
   React.useEffect(() => {
     fetchUser()
@@ -46,7 +41,8 @@ export const Users = () => {
       {users.map((e, i) => (
         <Link to={`/users/${e.id}`} key={i}>
           <Belowraper>
-            <Image src={e.avatar} />
+            <Image src={e.image} />
+            <p>{e.price}</p>
           </Belowraper>
         </Link>
       ))}

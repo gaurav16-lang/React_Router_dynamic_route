@@ -6,12 +6,9 @@ export const UsersDetails = () => {
   const [isLoading, setIsloading] = React.useState(false)
   const { usersid } = useParams()
   const getuserdetail = () => {
-    fetch(`https://reqres.in/api/users/${usersid}`)
-      .then((d) => d.json())
-      .then((res) => {
-        console.log(res.data)
-        setuser(res.data)
-      })
+    fetch(`https://fakestoreapi.com/products/${usersid}`)
+      .then((res) => res.json())
+      .then((json) => setuser(json))
   }
   React.useEffect(() => {
     getuserdetail()
@@ -19,10 +16,9 @@ export const UsersDetails = () => {
 
   return (
     <div>
-      <img src={user.avatar} alt="h" />
-      <p>{user.email}</p>
-      <p>{user.first_name}</p>
-      <p>{user.last_name}</p>
+      <img src={user.image} alt="h" />
+      <p>{user.description}</p>
+      <p>{user.price}</p>
     </div>
   )
 }
